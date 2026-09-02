@@ -1,4 +1,4 @@
-backend:
+Backend:
   name: git-gateway
   branch: main
 
@@ -20,10 +20,11 @@ collections:
             name: "membres"
             widget: "list"
             fields:
-              - { label: "Initiale (affichée dans le rond)", name: "initiale", widget: "string" }
-              - { label: "Nom", name: "nom", widget: "string" }
-              - { label: "Rôle", name: "role", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Photo de profil", name: "photo", widget: "image", required: false }
+              - { label: "Initiale (affichée dans le rond)", name: "initiale", widget: "string", required: false }
+              - { label: "Nom et Prénom", name: "nom", widget: "string" }
+              - { label: "Intitulé / Description du poste", name: "role", widget: "string" }
+              - { label: "Description / Bio", name: "description", widget: "text", required: false }
 
   - name: "impact"
     label: "Chiffres d'impact"
@@ -75,3 +76,4 @@ collections:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Lien Facebook", name: "facebook", widget: "string" }
           - { label: "Adresse", name: "adresse", widget: "string" }
+          
