@@ -15,16 +15,17 @@ collections:
         label: "Équipe dirigeante"
         file: "content/equipe.json"
         fields:
-          - { label: "Note (texte sous la liste, optionnel)", name: "note", widget: "text", required: false }
           - label: "Membres du bureau"
             name: "membres"
             widget: "list"
+            summary: "{{fields.initiale}} — {{fields.role}} : {{fields.nom}}"
             fields:
               - { label: "Photo de profil", name: "photo", widget: "image", required: false }
               - { label: "Initiale (affichée dans le rond)", name: "initiale", widget: "string", required: false }
               - { label: "Nom et Prénom", name: "nom", widget: "string" }
               - { label: "Intitulé / Description du poste", name: "role", widget: "string" }
               - { label: "Description / Bio", name: "description", widget: "text", required: false }
+          - { label: "Note (texte sous la liste, optionnel)", name: "note", widget: "text", required: false }
 
   - name: "impact"
     label: "Chiffres d'impact"
@@ -76,4 +77,3 @@ collections:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Lien Facebook", name: "facebook", widget: "string" }
           - { label: "Adresse", name: "adresse", widget: "string" }
-          
