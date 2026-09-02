@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--
+  GUIDE RAPIDE DE MODIFICATION — Association Action Plus (2AP)
+
+  - Chiffres d'impact : cherchez la ligne <section class="impact" id="impact"> et modifiez les valeurs .num
+  - Équipe dirigeante : cherchez <section id="equipe"> et remplacez noms/rôles/descriptions
+  - Actions récentes : cherchez <section id="actions">, chaque bloc .action-row = une action
+  - Contact / réseaux : tout en bas, dans <footer id="contact">
+  - Photos : remplacez les <div class="action-visual ..."> par des balises <img src="images/votre-photo.jpg" class="action-visual">
+  - Couleurs et polices : tout en haut du fichier, dans la balise <style>, sous :root
+-->
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Association Action Plus — Sèhouè, Bénin</title>
+<meta name="description" content="L'Association Action Plus (2AP) accompagne les enfants orphelins et vulnérables et les communautés de l'arrondissement de Sèhouè à travers des actions éducatives et solidaires.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a16;
+    --nuit:#1b2a4a;
+    --nuit-deep:#121d34;
+    --argile:#c1652f;
+    --or:#e0a83a;
+    --vert:#3f6b4a;
+    --sable:#f6eedd;
+    --sable-deep:#ecdfbf;
+    --blanc:#fffdf8;
+    --line: rgba(28,26,22,0.14);
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sable);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.12;
+    margin:0;
+    color:var(--nuit);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  :focus-visible{outline:2px solid var(--argile); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- motif décoratif (inspiré des losanges de pagne, dessin original) ---------- */
+  .motif{
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.055) 0 2px, transparent 2px 26px),
+                       repeating-linear-gradient(-45deg, rgba(255,255,255,0.055) 0 2px, transparent 2px 26px);
+  }
+  .motif-sol{
+    background-image: repeating-linear-gradient(45deg, rgba(27,42,74,0.06) 0 1px, transparent 1px 22px),
+                       repeating-linear-gradient(-45deg, rgba(27,42,74,0.06) 0 1px, transparent 1px 22px);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:var(--sable);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+    text-decoration:none; color:var(--nuit);
+  }
+  .brand-mark{
+    width:42px; height:42px; border-radius:50%;
+    object-fit:cover;
+    flex-shrink:0;
+  }
+  nav.links{display:flex; gap:28px;}
+  nav.links a{
+    text-decoration:none; font-size:0.95rem; font-weight:500; color:var(--ink);
+    padding:6px 2px; border-bottom:2px solid transparent;
+  }
+  nav.links a:hover{border-bottom-color:var(--argile);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:760px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--sable); border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden;
+    }
+    nav.links.open{max-height:400px;}
+    nav.links a{padding:14px 28px; border-bottom:1px solid var(--line);}
+    .nav-toggle{
+      display:block; background:none; border:none; cursor:pointer;
+      font-family:'Work Sans'; font-size:0.9rem; font-weight:600; color:var(--nuit);
+    }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    min-height:88vh;
+    display:flex;
+    align-items:flex-end;
+    background:
+      linear-gradient(180deg, rgba(15,20,30,0.35) 0%, rgba(15,20,30,0.55) 55%, rgba(10,14,22,0.82) 100%),
+      url('images/enfants-hero.jpg') center 30% / cover no-repeat;
+  }
+  .hero-inner{
+    position:relative;
+    max-width:var(--maxw); margin:0 auto;
+    width:100%;
+    padding:64px 28px 72px;
+  }
+  .hero-eyebrow{
+    font-size:0.95rem; color:var(--or); font-weight:500; margin-bottom:18px;
+  }
+  .hero h1{
+    color:var(--blanc);
+    font-size:clamp(2.2rem, 5.4vw, 3.6rem);
+    max-width:16ch;
+    text-shadow:0 2px 18px rgba(0,0,0,0.35);
+  }
+  .hero p.lead{
+    margin-top:22px; max-width:46ch;
+    color:rgba(255,253,248,0.9);
+    font-size:1.08rem;
+    text-shadow:0 1px 10px rgba(0,0,0,0.3);
+  }
+  .hero-cta{
+    margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block; padding:13px 26px;
+    text-decoration:none; font-weight:600; font-size:0.95rem;
+    border-radius:2px;
+    transition:transform 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--argile); color:var(--blanc);}
+  .btn-ghost{background:transparent; color:var(--blanc); border:1px solid rgba(255,253,248,0.55);}
+
+  @media (max-width:820px){
+    .hero{min-height:78vh;}
+    .hero-inner{padding:48px 24px 52px;}
+  }
+
+  /* ---------- section spacing ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:56ch; margin-bottom:52px;}
+  .section-head .kicker{
+    color:var(--argile); font-weight:600; font-size:0.95rem; margin-bottom:10px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.6rem, 3vw, 2.2rem);}
+  .section-head p{margin-top:16px; color:#4a463d; font-size:1.02rem;}
+
+  /* ---------- mission ---------- */
+  .mission{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;
+  }
+  .mission-quote{
+    border-left:3px solid var(--argile);
+    padding-left:24px;
+  }
+  .mission-quote p{
+    font-family:'Fraunces', serif; font-size:1.5rem; color:var(--nuit); line-height:1.35;
+  }
+  .mission-body p{color:#3d392f; margin-bottom:16px;}
+  @media (max-width:800px){
+    .mission{grid-template-columns:1fr;}
+  }
+
+  /* ---------- domaines ---------- */
+  .domaines{background:var(--blanc); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .domaine-list{border-top:1px solid var(--line);}
+  .domaine-row{
+    display:grid; grid-template-columns:120px 1fr 1.4fr; gap:24px;
+    padding:30px 0; border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .domaine-row .tag{
+    font-family:'Fraunces', serif; color:var(--argile); font-size:1rem; font-weight:600;
+  }
+  .domaine-row h3{font-size:1.15rem;}
+  .domaine-row p{color:#4a463d; font-size:0.98rem;}
+  @media (max-width:700px){
+    .domaine-row{grid-template-columns:1fr; gap:6px;}
+  }
+
+  /* ---------- équipe dirigeante ---------- */
+  .equipe-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .equipe-card{
+    background:var(--blanc);
+    padding:32px 28px;
+  }
+  .equipe-card .photo{
+    width:64px; height:64px; border-radius:50%;
+    background:var(--sable-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; color:var(--nuit); font-size:1.1rem; font-weight:600;
+    margin-bottom:18px;
+  }
+  .equipe-card h3{font-size:1.1rem;}
+  .equipe-card .role{
+    color:var(--argile); font-weight:600; font-size:0.88rem; margin-top:4px; display:block;
+  }
+  .equipe-card p{margin-top:12px; color:#4a463d; font-size:0.92rem;}
+  .equipe-note{margin-top:28px; font-size:0.88rem; color:#6b6656;}
+  @media (max-width:760px){
+    .equipe-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- impact ---------- */
+  .impact{background:var(--sable-deep);}
+  .impact-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:36px;
+  }
+  .impact-item .num{
+    font-family:'Fraunces', serif; font-size:clamp(2.2rem,5vw,3rem); color:var(--nuit); font-weight:600;
+  }
+  .impact-item .label{margin-top:6px; color:#4a463d; font-size:0.95rem;}
+  .impact-note{margin-top:40px; font-size:0.88rem; color:#6b6656;}
+  @media (max-width:700px){
+    .impact-grid{grid-template-columns:1fr 1fr; row-gap:36px;}
+  }
+
+  /* ---------- actions ---------- */
+  .action-row{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:44px;
+    align-items:center;
+    padding:44px 0;
+    border-top:1px solid var(--line);
+  }
+  .action-row:last-child{border-bottom:1px solid var(--line);}
+  .action-row:nth-child(even){grid-template-columns:1.1fr 0.9fr;}
+  .action-row:nth-child(even) .action-visual{order:2;}
+  .action-visual{
+    aspect-ratio:4/3;
+    position:relative;
+    overflow:hidden;
+  }
+  .action-visual.v1{background:var(--vert);}
+  .action-visual.v2{background:var(--argile);}
+  .action-visual.v3{background:var(--nuit);}
+  .action-visual span{
+    position:absolute; bottom:14px; left:16px;
+    color:rgba(255,253,248,0.85); font-size:0.8rem; font-family:'Work Sans';
+  }
+  .action-text .kicker{color:var(--argile); font-weight:600; font-size:0.88rem;}
+  .action-text h3{margin-top:8px; font-size:1.4rem;}
+  .action-text p{margin-top:12px; color:#4a463d;}
+  @media (max-width:760px){
+    .action-row, .action-row:nth-child(even){grid-template-columns:1fr;}
+    .action-row:nth-child(even) .action-visual{order:0;}
+  }
+
+  /* ---------- soutien / CTA ---------- */
+  .soutien{
+    background:var(--nuit); color:var(--blanc);
+  }
+  .soutien-inner{
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:center;
+  }
+  .soutien h2{color:var(--blanc); font-size:clamp(1.7rem,3.4vw,2.4rem); max-width:16ch;}
+  .soutien p{margin-top:16px; color:rgba(255,253,248,0.8); max-width:48ch;}
+  .soutien-actions{display:flex; flex-direction:column; gap:12px;}
+  .soutien-actions .btn{text-align:center;}
+  @media (max-width:800px){.soutien-inner{grid-template-columns:1fr;}}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--nuit-deep); color:rgba(255,253,248,0.75); padding:56px 0 32px;}
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px;
+    padding-bottom:36px; border-bottom:1px solid rgba(255,253,248,0.12);
+  }
+  .footer-grid h4{font-family:'Fraunces', serif; color:var(--blanc); font-weight:500; font-size:1rem; margin-bottom:14px;}
+  .footer-grid a{display:block; text-decoration:none; color:rgba(255,253,248,0.72); font-size:0.92rem; margin-bottom:9px;}
+  .footer-grid a:hover{color:var(--or);}
+  .footer-bottom{padding-top:24px; font-size:0.82rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  @media (max-width:700px){.footer-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#accueil" class="brand">
+      <img src="images/logo.jpg" alt="Logo Association Action Plus" class="brand-mark">
+      Action Plus <span style="color:var(--argile); font-weight:500;">— 2AP</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" onclick="const n=document.getElementById('primary-nav'); const open=n.classList.toggle('open'); this.setAttribute('aria-expanded', open);">Menu</button>
+    <nav class="links" id="primary-nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#equipe">Équipe dirigeante</a>
+      <a href="#actions">Nos actions</a>
+      <a href="#impact">Impact</a>
+      <a href="#soutenir">Nous soutenir</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="accueil">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Sèhouè, Bénin</span>
+    <h1>Association Action Plus (2AP) : Agir aujourd'hui pour construire un avenir meilleur</h1>
+    <p class="lead">Elle œuvre en priorité pour les enfants orphelins et vulnérables : prise en charge, accompagnement scolaire et soutien aux familles qui les recueillent, pour construire un avenir plus solidaire.</p>
+    <div class="hero-cta">
+      <a href="#soutenir" class="btn btn-primary">Faire un don</a>
+      <a href="#apropos" class="btn btn-ghost">Découvrir nos actions</a>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="wrap">
+    <div class="mission">
+      <div class="mission-quote">
+        <p>Contribuer à l'amélioration des conditions de vie des enfants orphelins et vulnérables, à travers une prise en charge, un accompagnement éducatif et un soutien communautaire durable.</p>
+      </div>
+      <div class="mission-body">
+        <p>L'Association Action Plus (2AP) est née d'un constat simple : dans l'arrondissement de Sèhouè, de nombreux enfants orphelins et vulnérables manquent d'un accompagnement régulier pour accéder à l'éducation et faire face aux difficultés du quotidien.</p>
+        <p>2AP agit en priorité auprès de ces enfants et des familles ou tuteurs qui les recueillent, avec un suivi dans la durée — non pas des interventions isolées, mais une présence continue portée par une équipe locale et un réseau de bénévoles engagés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipe">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Équipe dirigeante</span>
+      <h2>Les personnes qui portent 2AP</h2>
+      <p>Une équipe locale, présente sur le terrain, qui coordonne les actions et le suivi des familles accompagnées.</p>
+    </div>
+    <div class="equipe-grid" id="equipe-grid"></div>
+    <p class="equipe-note" id="equipe-note"></p>
+  </div>
+</section>
+
+<section class="domaines">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Nos domaines d'action</span>
+      <h2>Quatre axes, un même engagement</h2>
+    </div>
+    <div class="domaine-list">
+      <div class="domaine-row">
+        <span class="tag">01</span>
+        <h3>Enfants orphelins et vulnérables</h3>
+        <p>Priorité de l'association : identification, prise en charge et suivi des enfants orphelins, en lien avec les familles ou tuteurs qui les accueillent.</p>
+      </div>
+      <div class="domaine-row">
+        <span class="tag">02</span>
+        <h3>Éducation</h3>
+        <p>Accompagnement scolaire, appui aux devoirs et actions pour favoriser l'accès et le maintien à l'école, en particulier pour les enfants orphelins.</p>
+      </div>
+      <div class="domaine-row">
+        <span class="tag">03</span>
+        <h3>Solidarité</h3>
+        <p>Soutien direct aux familles et tuteurs qui recueillent des enfants orphelins, ainsi qu'aux personnes en situation de vulnérabilité.</p>
+      </div>
+      <div class="domaine-row">
+        <span class="tag">04</span>
+        <h3>Accompagnement</h3>
+        <p>Suivi personnalisé et régulier des enfants orphelins et des personnes ayant besoin d'un appui, au-delà de l'aide ponctuelle.</p>
+      </div>
+      <div class="domaine-row">
+        <span class="tag">05</span>
+        <h3>Engagement communautaire</h3>
+        <p>Mobilisation des jeunes, des bénévoles et des partenaires locaux autour de la cause des enfants orphelins et vulnérables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact" id="impact">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:44px;">
+      <span class="kicker">Notre impact</span>
+      <h2>Ce que la communauté construit ensemble</h2>
+    </div>
+    <div class="impact-grid" id="impact-grid"></div>
+    <p class="impact-note" id="impact-note"></p>
+  </div>
+</section>
+
+<section id="actions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Nos dernières actions</span>
+      <h2>Sur le terrain, avec les communautés</h2>
+    </div>
+
+    <div id="actions-list"></div>
+  </div>
+</section>
+
+<section class="soutien" id="soutenir">
+  <div class="wrap soutien-inner">
+    <div>
+      <h2>Votre soutien change le quotidien d'un enfant orphelin.</h2>
+      <p>2AP se développe grâce à ses dons, ses bénévoles et ses partenaires. Chaque contribution, quelle que soit sa taille, renforce la prise en charge d'un enfant orphelin ou vulnérable.</p>
+    </div>
+    <div class="soutien-actions">
+      <a href="mailto:associationactionplus3@gmail.com?subject=Faire un don" class="btn btn-primary" data-mailto data-subject="Faire un don">Faire un don</a>
+      <a href="mailto:associationactionplus3@gmail.com?subject=Devenir bénévole" class="btn btn-ghost" data-mailto data-subject="Devenir bénévole">Devenir bénévole</a>
+      <a href="mailto:associationactionplus3@gmail.com?subject=Proposition de partenariat" class="btn btn-ghost" data-mailto data-subject="Proposition de partenariat">Proposer un partenariat</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+          <img src="images/logo.jpg" alt="Logo Association Action Plus" style="width:44px; height:44px; border-radius:50%; object-fit:cover;">
+          <h4 style="margin-bottom:0;">Association Action Plus</h4>
+        </div>
+        <p style="font-size:0.92rem; max-width:38ch; color:rgba(255,253,248,0.72);">Association engagée pour les enfants orphelins et vulnérables, à travers des actions éducatives et sociales dans l'arrondissement de Sèhouè, Bénin.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#equipe">Équipe dirigeante</a>
+        <a href="#actions">Nos actions</a>
+        <a href="#soutenir">Nous soutenir</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:associationactionplus3@gmail.com" id="footer-email" data-mailto>associationactionplus3@gmail.com</a>
+        <a href="https://www.facebook.com/profile.php?id=61590500370261" target="_blank" rel="noopener" id="footer-facebook">Facebook</a>
+        <a href="#" id="footer-adresse">Sèhouè, Bénin</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Association Action Plus (2AP). Tous droits réservés.</span>
+      <span>Site conçu par R-Tech</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s == null ? '' : s;
+    return d.innerHTML;
+  }
+
+  // --- Équipe dirigeante ---
+  fetch('content/equipe.json').then(r => r.json()).then(function(data){
+    var grid = document.getElementById('equipe-grid');
+    var note = document.getElementById('equipe-note');
+    if (grid && Array.isArray(data.membres)) {
+      grid.innerHTML = data.membres.map(function(m){
+        return '<div class="equipe-card">' +
+          '<div class="photo">' + esc(m.initiale) + '</div>' +
+          '<h3>' + esc(m.nom) + '</h3>' +
+          '<span class="role">' + esc(m.role) + '</span>' +
+          '<p>' + esc(m.description) + '</p>' +
+        '</div>';
+      }).join('');
+    }
+    if (note) note.textContent = data.note || '';
+  }).catch(function(e){ console.error('Erreur chargement équipe.json', e); });
+
+  // --- Impact ---
+  fetch('content/impact.json').then(r => r.json()).then(function(data){
+    var grid = document.getElementById('impact-grid');
+    var note = document.getElementById('impact-note');
+    if (grid && Array.isArray(data.items)) {
+      grid.innerHTML = data.items.map(function(it){
+        return '<div class="impact-item">' +
+          '<div class="num">' + esc(it.num) + '</div>' +
+          '<div class="label">' + esc(it.label) + '</div>' +
+        '</div>';
+      }).join('');
+    }
+    if (note) note.textContent = data.note || '';
+  }).catch(function(e){ console.error('Erreur chargement impact.json', e); });
+
+  // --- Actions récentes ---
+  fetch('content/actions.json').then(r => r.json()).then(function(data){
+    var list = document.getElementById('actions-list');
+    if (list && Array.isArray(data.actions)) {
+      list.innerHTML = data.actions.map(function(a, i){
+        var visual = a.photo
+          ? '<div class="action-visual"><img src="' + esc(a.photo) + '" alt="' + esc(a.titre) + '"></div>'
+          : '<div class="action-visual ' + esc(a.couleur || 'v1') + '"><span>Photo à intégrer</span></div>';
+        return '<div class="action-row">' +
+          visual +
+          '<div class="action-text">' +
+            '<span class="kicker">' + esc(a.kicker) + '</span>' +
+            '<h3>' + esc(a.titre) + '</h3>' +
+            '<p>' + esc(a.description) + '</p>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+  }).catch(function(e){ console.error('Erreur chargement actions.json', e); });
+
+  // --- Contact ---
+  fetch('content/contact.json').then(r => r.json()).then(function(data){
+    var email = data.email || 'associationactionplus3@gmail.com';
+
+    document.querySelectorAll('[data-mailto]').forEach(function(a){
+      var subject = a.getAttribute('data-subject');
+      a.setAttribute('href', 'mailto:' + email + (subject ? ('?subject=' + encodeURIComponent(subject)) : ''));
+      if (a.id === 'footer-email') a.textContent = email;
+    });
+
+    var fb = document.getElementById('footer-facebook');
+    if (fb && data.facebook) fb.setAttribute('href', data.facebook);
+
+    var addr = document.getElementById('footer-adresse');
+    if (addr && data.adresse) addr.textContent = data.adresse;
+  }).catch(function(e){ console.error('Erreur chargement contact.json', e); });
+})();
+</script>
+
+</body>
+</html>
