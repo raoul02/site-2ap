@@ -65,11 +65,11 @@
   /* ---------- motif décoratif (inspiré des losanges de pagne, dessin original) ---------- */
   .motif{
     background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.055) 0 2px, transparent 2px 26px),
-                       repeating-linear-gradient(-45deg, rgba(255,255,255,0.055) 0 2px, transparent 2px 26px);
+                      repeating-linear-gradient(-45deg, rgba(255,255,255,0.055) 0 2px, transparent 2px 26px);
   }
   .motif-sol{
     background-image: repeating-linear-gradient(45deg, rgba(27,42,74,0.06) 0 1px, transparent 1px 22px),
-                       repeating-linear-gradient(-45deg, rgba(27,42,74,0.06) 0 1px, transparent 1px 22px);
+                      repeating-linear-gradient(-45deg, rgba(27,42,74,0.06) 0 1px, transparent 1px 22px);
   }
 
   /* ---------- header ---------- */
@@ -218,12 +218,15 @@
     background:var(--blanc);
     padding:32px 28px;
   }
-  .equipe-card .photo{
+  .equipe-card .photo, .equipe-card img.photo-img{
     width:64px; height:64px; border-radius:50%;
+    object-fit:cover;
+    margin-bottom:18px;
+  }
+  .equipe-card .photo{
     background:var(--sable-deep);
     display:flex; align-items:center; justify-content:center;
     font-family:'Fraunces', serif; color:var(--nuit); font-size:1.1rem; font-weight:600;
-    margin-bottom:18px;
   }
   .equipe-card h3{font-size:1.1rem;}
   .equipe-card .role{
@@ -231,7 +234,10 @@
   }
   .equipe-card p{margin-top:12px; color:#4a463d; font-size:0.92rem;}
   .equipe-note{margin-top:28px; font-size:0.88rem; color:#6b6656;}
-  @media (max-width:760px){
+  @media (max-width:900px){
+    .equipe-grid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:600px){
     .equipe-grid{grid-template-columns:1fr;}
   }
 
@@ -263,6 +269,9 @@
     aspect-ratio:4/3;
     position:relative;
     overflow:hidden;
+  }
+  .action-visual img{
+    width:100%; height:100%; object-fit:cover;
   }
   .action-visual.v1{background:var(--vert);}
   .action-visual.v2{background:var(--argile);}
@@ -476,76 +485,26 @@
     return d.innerHTML;
   }
 
-  // --- Équipe dirigeante ---
+  // --- Équipe dirigeante (Lecture dynamique depuis content/equipe.json) ---
   fetch('content/equipe.json').then(r => r.json()).then(function(data){
     var grid = document.getElementById('equipe-grid');
     var note = document.getElementById('equipe-note');
     if (grid && Array.isArray(data.membres)) {
       grid.innerHTML = data.membres.map(function(m){
+        var avatar = m.photo
+          ? '<img src="' + esc(m.photo) + '" alt="' + esc(m.nom) + '" class="photo-img">'
+          : '<div class="photo">' + esc(m.initiale || '') + '</div>';
+
         return '<div class="equipe-card">' +
-          '<div class="photo">' + esc(m.initiale) + '</div>' +
-          '<h3>' + esc(m.nom) + '</h3>' +
-          '<span class="role">' + esc(m.role) + '</span>' +
-          '<p>' + esc(m.description) + '</p>' +
+          avatar +
+          '<h3>' + esc(m.nom || 'Poste à pourvoir') + '</h3>' +
+          '<span class="role">' + esc(m.role || '') + '</span>' +
+          '<p>' + esc(m.description || '') + '</p>' +
         '</div>';
       }).join('');
     }
     if (note) note.textContent = data.note || '';
-  }).catch(function(e){ console.error('Erreur chargement équipe.json', e); });
+  }).catch(function(e){ console.error('Erreur chargement equipe.json', e); });
 
   // --- Impact ---
-  fetch('content/impact.json').then(r => r.json()).then(function(data){
-    var grid = document.getElementById('impact-grid');
-    var note = document.getElementById('impact-note');
-    if (grid && Array.isArray(data.items)) {
-      grid.innerHTML = data.items.map(function(it){
-        return '<div class="impact-item">' +
-          '<div class="num">' + esc(it.num) + '</div>' +
-          '<div class="label">' + esc(it.label) + '</div>' +
-        '</div>';
-      }).join('');
-    }
-    if (note) note.textContent = data.note || '';
-  }).catch(function(e){ console.error('Erreur chargement impact.json', e); });
-
-  // --- Actions récentes ---
-  fetch('content/actions.json').then(r => r.json()).then(function(data){
-    var list = document.getElementById('actions-list');
-    if (list && Array.isArray(data.actions)) {
-      list.innerHTML = data.actions.map(function(a, i){
-        var visual = a.photo
-          ? '<div class="action-visual"><img src="' + esc(a.photo) + '" alt="' + esc(a.titre) + '"></div>'
-          : '<div class="action-visual ' + esc(a.couleur || 'v1') + '"><span>Photo à intégrer</span></div>';
-        return '<div class="action-row">' +
-          visual +
-          '<div class="action-text">' +
-            '<span class="kicker">' + esc(a.kicker) + '</span>' +
-            '<h3>' + esc(a.titre) + '</h3>' +
-            '<p>' + esc(a.description) + '</p>' +
-          '</div>' +
-        '</div>';
-      }).join('');
-    }
-  }).catch(function(e){ console.error('Erreur chargement actions.json', e); });
-
-  // --- Contact ---
-  fetch('content/contact.json').then(r => r.json()).then(function(data){
-    var email = data.email || 'associationactionplus3@gmail.com';
-
-    document.querySelectorAll('[data-mailto]').forEach(function(a){
-      var subject = a.getAttribute('data-subject');
-      a.setAttribute('href', 'mailto:' + email + (subject ? ('?subject=' + encodeURIComponent(subject)) : ''));
-      if (a.id === 'footer-email') a.textContent = email;
-    });
-
-    var fb = document.getElementById('footer-facebook');
-    if (fb && data.facebook) fb.setAttribute('href', data.facebook);
-
-    var addr = document.getElementById('footer-adresse');
-    if (addr && data.adresse) addr.textContent = data.adresse;
-  }).catch(function(e){ console.error('Erreur chargement contact.json', e); });
-})();
-</script>
-
-</body>
-</html>
+  fetch('content/impact.json').the
