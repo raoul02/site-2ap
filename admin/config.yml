@@ -1,0 +1,77 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+locale: "fr"
+
+collections:
+  - name: "equipe"
+    label: "Équipe dirigeante"
+    files:
+      - name: "equipe"
+        label: "Équipe dirigeante"
+        file: "content/equipe.json"
+        fields:
+          - { label: "Note (texte sous la liste, optionnel)", name: "note", widget: "text", required: false }
+          - label: "Membres du bureau"
+            name: "membres"
+            widget: "list"
+            fields:
+              - { label: "Initiale (affichée dans le rond)", name: "initiale", widget: "string" }
+              - { label: "Nom", name: "nom", widget: "string" }
+              - { label: "Rôle", name: "role", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+  - name: "impact"
+    label: "Chiffres d'impact"
+    files:
+      - name: "impact"
+        label: "Chiffres d'impact"
+        file: "content/impact.json"
+        fields:
+          - label: "Chiffres"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Chiffre (ex: 120+)", name: "num", widget: "string" }
+              - { label: "Libellé", name: "label", widget: "string" }
+          - { label: "Note (texte sous les chiffres, optionnel)", name: "note", widget: "text", required: false }
+
+  - name: "actions"
+    label: "Nos dernières actions"
+    files:
+      - name: "actions"
+        label: "Nos dernières actions"
+        file: "content/actions.json"
+        fields:
+          - label: "Actions"
+            name: "actions"
+            widget: "list"
+            fields:
+              - { label: "Catégorie (kicker)", name: "kicker", widget: "string" }
+              - { label: "Titre", name: "titre", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Photo (optionnel — laisser vide pour garder le fond de couleur)"
+                name: "photo"
+                widget: "image"
+                required: false
+              - label: "Couleur de fond (si pas de photo)"
+                name: "couleur"
+                widget: "select"
+                options: ["v1", "v2", "v3"]
+                default: "v1"
+                required: false
+
+  - name: "contact"
+    label: "Contact / réseaux"
+    files:
+      - name: "contact"
+        label: "Contact / réseaux"
+        file: "content/contact.json"
+        fields:
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Lien Facebook", name: "facebook", widget: "string" }
+          - { label: "Adresse", name: "adresse", widget: "string" }
