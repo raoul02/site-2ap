@@ -1,9 +1,9 @@
 {
   "items": [
-    { "num": "120+", "label": "Enfants orphelins et vulnérables accompagnés" },
-    { "num": "45", "label": "Actions réalisées" },
-    { "num": "60", "label": "Bénévoles mobilisés" },
-    { "num": "12", "label": "Partenaires" }
+    { "num": "40", "label": "Enfants orphelins et vulnérables accompagnés" },
+    { "num": "01", "label": "Actions réalisées" },
+    { "num": "10+", "label": "Bénévoles mobilisés" },
+    { "num": "09+", "label": "Partenaires" }
   ],
   "note": "Chiffres à mettre à jour avec les données réelles de l'association."
 }
