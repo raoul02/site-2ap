@@ -1,0 +1,32 @@
+{
+  "actions": [
+    {
+      "kicker": "Enfants orphelins",
+      "titre": "Prise en charge des enfants orphelins",
+      "description": "Identification, suivi et accompagnement des enfants orphelins de l'arrondissement, en lien avec les familles ou tuteurs qui les accueillent au quotidien.",
+      "couleur": "v1",
+      "photo": ""
+    },
+    {
+      "kicker": "Éducation",
+      "titre": "Soutien scolaire aux enfants",
+      "description": "Une initiative destinée à accompagner les enfants, en particulier les orphelins, dans leur parcours scolaire, avec un suivi régulier assuré par l'équipe et les bénévoles de 2AP.",
+      "couleur": "v2",
+      "photo": ""
+    },
+    {
+      "kicker": "Éducation",
+      "titre": "Distribution de fournitures scolaires",
+      "description": "Une action visant à équiper les enfants des fournitures nécessaires à leur scolarité, en particulier au démarrage de l'année scolaire.",
+      "couleur": "v3",
+      "photo": ""
+    },
+    {
+      "kicker": "Solidarité",
+      "titre": "Action de solidarité communautaire",
+      "description": "Une initiative menée au bénéfice des personnes et des communautés accompagnées par 2AP, en réponse à des besoins identifiés sur le terrain.",
+      "couleur": "v1",
+      "photo": ""
+    }
+  ]
+}
