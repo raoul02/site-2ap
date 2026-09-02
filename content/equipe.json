@@ -1,0 +1,23 @@
+{
+  "note": "",
+  "membres": [
+    {
+      "initiale": "P.",
+      "nom": "Nom du président",
+      "role": "Président",
+      "description": "Brève description du rôle et de l'engagement au sein de l'association."
+    },
+    {
+      "initiale": "S.",
+      "nom": "Nom du secrétaire",
+      "role": "Secrétaire général",
+      "description": "Brève description du rôle et de l'engagement au sein de l'association."
+    },
+    {
+      "initiale": "T.",
+      "nom": "Nom du trésorier",
+      "role": "Trésorier",
+      "description": "Brève description du rôle et de l'engagement au sein de l'association."
+    }
+  ]
+}
