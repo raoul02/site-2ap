@@ -1,25 +1,40 @@
 {
-  "note": "Notre équipe s'engage au quotidien avec passion et rigueur pour accompagner les enfants orphelins et vulnérables vers un avenir meilleur. ",
+  "note": "Notre équipe s'engage au quotidien avec passion et rigueur pour accompagner les enfants orphelins et vulnérables vers un avenir meilleur.",
   "membres": [
     {
+      "photo": "",
       "initiale": "Pr",
-      "nom": "ZOUNMAVO Rock ",
+      "nom": "",
       "role": "Président",
-      "description": "Assure la direction générale, la représentation légale et la vision stratégique de l'association. Il coordonne les actions de l'équipe et valide les partenariats majeurs.",
-      "photo": "images/1000673214.jpg"
+      "description": "Assure la direction générale, la représentation légale et la vision stratégique de l'association. Il coordonne les actions de l'équipe et valide les partenariats majeurs."
     },
     {
-      "initiale": "S.",
-      "nom": "HOUNWANOU Vincent ",
-      "role": "Secrétaire général",
-      "description": "Gère la rédaction des procès-verbaux, la tenue des registres, le suivi de la correspondance officielle et l'organisation administrative des réunions.",
-      "photo": "images/1000673247.jpg"
+      "photo": "",
+      "initiale": "RT",
+      "nom": "",
+      "role": "Responsable Technique",
+      "description": "Assure la conception, le pilotage et la gestion opérationnelle de tous les aspects techniques des projets de l'association."
     },
     {
-      "initiale": "T.",
-      "nom": "Nom du trésorier",
-      "role": "Trésorier",
-      "description": "Brève description du rôle et de l'engagement au sein de l'association."
+      "photo": "",
+      "initiale": "RF",
+      "nom": "",
+      "role": "Responsable des Finances",
+      "description": "Supervise la comptabilité, l'établissement du budget annuel, la gestion des cotisations/dons et le suivi des dépenses."
+    },
+    {
+      "photo": "",
+      "initiale": "SG",
+      "nom": "",
+      "role": "Secrétaire Général",
+      "description": "Gère la rédaction des procès-verbaux, la tenue des registres, le suivi de la correspondance officielle et l'organisation administrative des réunions."
+    },
+    {
+      "photo": "",
+      "initiale": "CC",
+      "nom": "",
+      "role": "Chargé de Communication",
+      "description": "Gère l'image de l'association, la rédaction des publications, la gestion du site web et des réseaux sociaux, ainsi que les relations avec le public."
     }
   ]
 }
